@@ -83,7 +83,12 @@ function buildUnix (ext, cb) {
   var res = path.join(__dirname, 'lib/libsodium-' + arch + '.' + ext)
   if (fs.existsSync(res)) return cb(null, res)
 
-  spawn('./configure', ['--prefix=' + tmp], {cwd: __dirname, stdio: 'inherit'}, function (err) {
+  var configureArgs = ['--prefix=' + tmp]
+  if (process.env.PREBUILD_ARCH_HOST) {
+    configureArgs.push('--host=', process.env.PREBUILD_ARCH_HOST)
+  }
+
+  spawn('./configure', configureArgs, {cwd: __dirname, stdio: 'inherit'}, function (err) {
     if (err) throw err
     spawn('make', ['clean'], {cwd: dir, stdio: 'inherit'}, function (err) {
       if (err) throw err
