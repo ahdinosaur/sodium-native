@@ -10,7 +10,7 @@
   },
   "devDependencies": {
     "node-gyp": "^3.6.1",
-    "prebuildify": "^2.3.3",
+    "prebuildify": "github:ahdinosaur/prebuildify",
     "sodium-test": "^0.7.0",
     "sodium-vectors": "^1.0.0",
     "standard": "^8.6.0",
