@@ -84,8 +84,8 @@ function buildUnix (ext, cb) {
   if (fs.existsSync(res)) return cb(null, res)
 
   var configureArgs = ['--prefix=' + tmp]
-  if (process.env.PREBUILD_ARCH_HOST) {
-    configureArgs.push('--host=', process.env.PREBUILD_ARCH_HOST)
+  if (process.env.PREBUILD_CONFIGURE_HOST) {
+    configureArgs.push('--host=' + process.env.PREBUILD_CONFIGURE_HOST)
   }
 
   spawn('./configure', configureArgs, {cwd: __dirname, stdio: 'inherit'}, function (err) {
